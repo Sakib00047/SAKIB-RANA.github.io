@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Md Sakib Rana | Urban Planner</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  /* ===== CUSTOMIZATION VARIABLES — Edit these to change colors, fonts, content ===== */
+  :root {
+    --accent: #2C7A4B;        /* Main accent color — change to any color you like */
+    --accent-light: #4CAF78;  /* Lighter shade of accent */
+    --bg: #F7F5F0;            /* Page background */
+    --surface: #FFFFFF;       /* Card/section background */
+    --text: #1A1A1A;          /* Main text color */
+    --text-muted: #6B6B6B;    /* Muted/secondary text */
+    --border: #E0DDD6;        /* Border color */
+    --font-display: 'Playfair Display', serif;
+    --font-body: 'DM Sans', sans-serif;
+    --font-mono: 'DM Mono', monospace;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ===== NAV ===== */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(247,245,240,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 60px;
+  }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-weight: 700; font-size: 1.1rem;
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none; color: var(--text-muted);
+    font-size: 0.85rem; font-weight: 500; letter-spacing: 0.05em;
+    text-transform: uppercase; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* ===== HERO ===== */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 60px;
+  }
+  .hero-left {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 5rem 4rem 5rem 5rem;
+  }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--accent); color: #fff;
+    font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em;
+    text-transform: uppercase; padding: 0.35rem 0.9rem; border-radius: 2rem;
+    margin-bottom: 1.5rem; width: fit-content;
+  }
+  .hero-tag::before { content: '●'; font-size: 0.5rem; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+  .hero-name {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 5vw, 5.5rem);
+    font-weight: 900;
+    line-height: 1.0;
+    margin-bottom: 1rem;
+    color: var(--text);
+  }
+  .hero-name span { color: var(--accent); }
+
+  .hero-title {
+    font-size: 1.05rem; color: var(--text-muted);
+    font-weight: 300; margin-bottom: 2rem;
+    border-left: 3px solid var(--accent); padding-left: 1rem;
+  }
+
+  .hero-bio {
+    font-size: 0.95rem; color: var(--text-muted);
+    max-width: 480px; margin-bottom: 2.5rem; line-height: 1.8;
+  }
+
+  .hero-cta {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.75rem 1.75rem; border-radius: 4px;
+    font-size: 0.9rem; font-weight: 500; text-decoration: none;
+    transition: all 0.2s; cursor: pointer; border: none;
+  }
+  .btn-primary { background: var(--accent); color: #fff; }
+  .btn-primary:hover { background: var(--accent-light); transform: translateY(-1px); }
+  .btn-outline { background: transparent; color: var(--text); border: 1.5px solid var(--border); }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+  .hero-right {
+    background: linear-gradient(135deg, #1A3A28 0%, #2C7A4B 60%, #4CAF78 100%);
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    padding: 4rem;
+    position: relative; overflow: hidden;
+  }
+  .hero-right::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='1' fill='rgba(255,255,255,0.08)'/%3E%3C/svg%3E") repeat;
+  }
+  .hero-avatar {
+    width: 200px; height: 200px; border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    border: 3px solid rgba(255,255,255,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display); font-size: 5rem; color: #fff;
+    margin-bottom: 2rem; position: relative; z-index: 1;
+    font-weight: 700;
+  }
+  .hero-stats {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+    position: relative; z-index: 1;
+  }
+  .stat-card {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 12px; padding: 1.2rem 1.5rem; text-align: center;
+    backdrop-filter: blur(8px);
+  }
+  .stat-num {
+    font-family: var(--font-display); font-size: 2rem;
+    font-weight: 700; color: #fff; display: block;
+  }
+  .stat-label { font-size: 0.75rem; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 0.08em; }
+
+  .hero-contacts {
+    position: relative; z-index: 1;
+    display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap; justify-content: center;
+  }
+  .contact-pill {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    background: rgba(255,255,255,0.15); color: #fff;
+    padding: 0.4rem 0.9rem; border-radius: 2rem; font-size: 0.78rem;
+    border: 1px solid rgba(255,255,255,0.25); text-decoration: none;
+    transition: background 0.2s;
+  }
+  .contact-pill:hover { background: rgba(255,255,255,0.25); }
+
+  /* ===== SECTIONS ===== */
+  section { padding: 5rem 5rem; }
+  .section-label {
+    font-family: var(--font-mono); font-size: 0.75rem;
+    color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  .section-title {
+    font-family: var(--font-display); font-size: clamp(2rem, 3vw, 2.8rem);
+    font-weight: 700; line-height: 1.2; margin-bottom: 3rem;
+  }
+
+  /* ===== RESEARCH / EXPERIENCE ===== */
+  #experience { background: var(--surface); }
+  .timeline { display: flex; flex-direction: column; gap: 2rem; }
+  .timeline-item {
+    display: grid; grid-template-columns: 180px 1fr;
+    gap: 2rem; align-items: start;
+    padding-bottom: 2rem; border-bottom: 1px solid var(--border);
+  }
+  .timeline-item:last-child { border-bottom: none; }
+  .timeline-date {
+    font-family: var(--font-mono); font-size: 0.8rem;
+    color: var(--accent); font-weight: 500; padding-top: 0.15rem;
+  }
+  .timeline-body h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.3rem; }
+  .timeline-body .role {
+    font-size: 0.82rem; color: var(--accent); font-weight: 500;
+    background: rgba(44,122,75,0.08); display: inline-block;
+    padding: 0.15rem 0.6rem; border-radius: 3px; margin-bottom: 0.5rem;
+  }
+  .timeline-body p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.7; }
+  .timeline-body .supervisor { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.4rem; font-style: italic; }
+
+  /* ===== EDUCATION ===== */
+  .edu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px,1fr)); gap: 1.5rem; }
+  .edu-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; padding: 1.8rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative; overflow: hidden;
+  }
+  .edu-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: var(--accent);
+  }
+  .edu-card:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(44,122,75,0.1); }
+  .edu-degree { font-size: 0.75rem; color: var(--accent); font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.4rem; }
+  .edu-institution { font-weight: 700; font-size: 1rem; margin-bottom: 0.2rem; }
+  .edu-year { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.8rem; }
+  .edu-gpa { display: inline-block; background: rgba(44,122,75,0.08); color: var(--accent); font-size: 0.8rem; font-weight: 600; padding: 0.2rem 0.6rem; border-radius: 3px; }
+  .edu-note { font-size: 0.82rem; color: var(--text-muted); margin-top: 0.6rem; line-height: 1.5; }
+
+  /* ===== SKILLS ===== */
+  #skills { background: var(--surface); }
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px,1fr)); gap: 1rem; }
+  .skill-item {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 1rem 1.2rem; background: var(--bg);
+    border-radius: 10px; border: 1px solid var(--border);
+    transition: border-color 0.2s;
+  }
+  .skill-item:hover { border-color: var(--accent); }
+  .skill-icon {
+    width: 38px; height: 38px; border-radius: 8px;
+    background: rgba(44,122,75,0.1); display: flex; align-items: center;
+    justify-content: center; font-size: 1.1rem; flex-shrink: 0;
+  }
+  .skill-name { font-size: 0.9rem; font-weight: 600; }
+  .skill-desc { font-size: 0.76rem; color: var(--text-muted); margin-top: 0.1rem; }
+
+  /* ===== PUBLICATIONS ===== */
+  .pub-list { display: flex; flex-direction: column; gap: 1.5rem; }
+  .pub-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; padding: 1.5rem 1.8rem;
+    display: grid; grid-template-columns: auto 1fr; gap: 1.2rem;
+    transition: border-color 0.2s;
+  }
+  .pub-card:hover { border-color: var(--accent); }
+  .pub-year {
+    font-family: var(--font-mono); font-size: 0.78rem;
+    color: var(--accent); font-weight: 500;
+    white-space: nowrap; padding-top: 0.15rem;
+  }
+  .pub-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.3rem; line-height: 1.5; }
+  .pub-venue { font-size: 0.8rem; color: var(--text-muted); }
+  .pub-doi { font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent); text-decoration: none; display: inline-block; margin-top: 0.3rem; }
+  .pub-badge {
+    display: inline-block; padding: 0.15rem 0.5rem; border-radius: 3px;
+    font-size: 0.72rem; font-weight: 600; margin-left: 0.5rem;
+  }
+  .badge-submitted { background: #FFF3CD; color: #856404; }
+  .badge-accepted { background: #D1E7DD; color: #0A3622; }
+  .badge-published { background: rgba(44,122,75,0.12); color: var(--accent); }
+
+  /* ===== AWARDS ===== */
+  .awards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); gap: 1.2rem; }
+  .award-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+    padding: 1.4rem 1.6rem; display: flex; gap: 1rem; align-items: flex-start;
+  }
+  .award-icon { font-size: 1.8rem; flex-shrink: 0; }
+  .award-name { font-weight: 700; font-size: 0.95rem; }
+  .award-org { font-size: 0.82rem; color: var(--text-muted); }
+  .award-year { font-family: var(--font-mono); font-size: 0.78rem; color: var(--accent); margin-top: 0.3rem; }
+
+  /* ===== CONTACT ===== */
+  #contact { background: #1A3A28; color: #fff; }
+  #contact .section-label { color: var(--accent-light); }
+  #contact .section-title { color: #fff; }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+  .contact-info p { color: rgba(255,255,255,0.7); font-size: 0.95rem; margin-bottom: 2rem; line-height: 1.8; }
+  .contact-links { display: flex; flex-direction: column; gap: 0.8rem; }
+  .contact-link {
+    display: flex; align-items: center; gap: 0.8rem;
+    color: rgba(255,255,255,0.8); text-decoration: none;
+    font-size: 0.9rem; transition: color 0.2s;
+  }
+  .contact-link:hover { color: var(--accent-light); }
+  .contact-link-icon {
+    width: 36px; height: 36px; background: rgba(255,255,255,0.1);
+    border-radius: 8px; display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .refs-grid { display: flex; flex-direction: column; gap: 1rem; }
+  .ref-card {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 10px; padding: 1.2rem 1.4rem;
+  }
+  .ref-name { font-weight: 700; font-size: 0.95rem; color: #fff; }
+  .ref-title { font-size: 0.8rem; color: rgba(255,255,255,0.6); margin-top: 0.2rem; }
+  .ref-contact { font-size: 0.8rem; color: var(--accent-light); margin-top: 0.5rem; }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: #0F2318; color: rgba(255,255,255,0.4);
+    text-align: center; padding: 1.5rem;
+    font-size: 0.8rem; font-family: var(--font-mono);
+  }
+
+  /* ===== ANIMATIONS ===== */
+  .fade-in {
+    opacity: 0; transform: translateY(24px);
+    animation: fadeUp 0.7s ease forwards;
+  }
+  @keyframes fadeUp { to { opacity: 1; transform: none; } }
+  .delay-1 { animation-delay: 0.1s; }
+  .delay-2 { animation-delay: 0.2s; }
+  .delay-3 { animation-delay: 0.3s; }
+  .delay-4 { animation-delay: 0.4s; }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-left { padding: 4rem 2rem 2rem; }
+    .hero-right { padding: 3rem 2rem; min-height: 400px; }
+    section { padding: 3.5rem 1.5rem; }
+    .timeline-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .nav-links { gap: 1rem; }
+  }
+  @media (max-width: 600px) {
+    nav { padding: 0 1rem; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#top">Sakib Rana</a>
+  <ul class="nav-links">
+    <li><a href="#experience">Research</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-left">
+    <span class="hero-tag fade-in">Urban Planner · Researcher</span>
+    <h1 class="hero-name fade-in delay-1">Md Sakib<br/><span>Rana</span></h1>
+    <p class="hero-title fade-in delay-2">MURP Student · Rajshahi University of Engineering & Technology</p>
+    <p class="hero-bio fade-in delay-3">
+      Urban planner passionate about Environmental Planning, Transportation, GIS & Remote Sensing, and Machine Learning — committed to sustainable urban development in Bangladesh and beyond.
+    </p>
+    <div class="hero-cta fade-in delay-4">
+      <a href="#publications" class="btn btn-primary">View Publications</a>
+      <a href="mailto:sakibrana6510@gmail.com" class="btn btn-outline">Get in Touch</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-avatar">SR</div>
+    <div class="hero-stats">
+      <div class="stat-card">
+        <span class="stat-num">5+</span>
+        <span class="stat-label">Publications</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num">3.68</span>
+        <span class="stat-label">CGPA</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num">4</span>
+        <span class="stat-label">Research Roles</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num">3</span>
+        <span class="stat-label">Scholarships</span>
+      </div>
+    </div>
+    <div class="hero-contacts">
+      <a href="mailto:sakibrana6510@gmail.com" class="contact-pill">✉ Email</a>
+      <a href="https://wa.me/8801724486510" class="contact-pill">📱 WhatsApp</a>
+      <a href="#" class="contact-pill">🔬 ResearchGate</a>
+      <a href="#" class="contact-pill">💼 LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <p class="section-label">Work & Volunteering</p>
+  <h2 class="section-title">Research Experience</h2>
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <div class="timeline-date">Dec 2024 – Ongoing</div>
+      <div class="timeline-body">
+        <span class="role">Research Assistant</span>
+        <h3>Assessing Pedestrian Level of Service (PLOS) in Rajshahi City Corporation</h3>
+        <p class="supervisor">Supervisor: Waresul Hassan Nipun, Asst. Professor, Dept. of URP, RUET</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">Jan – Apr 2025</div>
+      <div class="timeline-body">
+        <span class="role">Research Assistant · Team Leader</span>
+        <h3>Assessment of Traffic-induced Noise Pollution and Associated Residents' Health Risks in Rajshahi City: Analysis through Structural Equation Model</h3>
+        <p>Led survey teams, conducted field data collection, ensured data accuracy.</p>
+        <p class="supervisor">Supervisor: Dr. Md. Abdul Wakil, Professor, Dept. of URP, RUET</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">May – Jul 2024</div>
+      <div class="timeline-body">
+        <span class="role">Research Assistant</span>
+        <h3>The Influence of Growth Center in Rural Agriculture</h3>
+        <p class="supervisor">Supervisor: Jahid Hasan, Asst. Professor, Dept. of URP, RUET</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">Jan – Feb 2025</div>
+      <div class="timeline-body">
+        <span class="role">Youth Volunteer</span>
+        <h3>Urban Living Lab Workshops — Rajshahi City Corporation</h3>
+        <p>Participated in two workshops on urban problem identification and solutions. Role: Note-taking & Management.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <p class="section-label">Academic Background</p>
+  <h2 class="section-title">Education & Training</h2>
+  <div class="edu-grid">
+    <div class="edu-card">
+      <div class="edu-degree">Masters</div>
+      <div class="edu-institution">MURP — Urban & Regional Planning</div>
+      <div class="edu-year">Apr 2026 – Ongoing</div>
+      <div class="edu-note">Rajshahi University of Engineering & Technology (RUET)</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-degree">Bachelor</div>
+      <div class="edu-institution">BURP — Urban & Regional Planning</div>
+      <div class="edu-year">Jan 2020 – Jul 2025</div>
+      <span class="edu-gpa">CGPA: 3.68</span>
+      <div class="edu-note">RUET, Kazla, Rajshahi<br/>Thesis: Assessment of Residential Single-Use Plastic Waste Generation and Management in RCC.</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-degree">HSC — Science</div>
+      <div class="edu-institution">Higher Secondary Certificate</div>
+      <div class="edu-year">Jun 2017 – Apr 2019</div>
+      <span class="edu-gpa">GPA: 5.00</span>
+      <div class="edu-note">New Government Degree College, Rajshahi Board</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-degree">SSC — Science</div>
+      <div class="edu-institution">Secondary School Certificate</div>
+      <div class="edu-year">Jan 2009 – Mar 2017</div>
+      <span class="edu-gpa">GPA: 5.00</span>
+      <div class="edu-note">Bilkarilla B.M High School, Naogaon, Rajshahi Board</div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <p class="section-label">Technical Expertise</p>
+  <h2 class="section-title">Digital Skills</h2>
+  <div class="skills-grid">
+    <div class="skill-item">
+      <div class="skill-icon">🗺️</div>
+      <div><div class="skill-name">GIS & Remote Sensing</div><div class="skill-desc">Map digitization, image classification, overlay analysis</div></div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-icon">🌍</div>
+      <div><div class="skill-name">ArcGIS</div><div class="skill-desc">Spatial data analysis, geospatial modeling</div></div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-icon">☁️</div>
+      <div><div class="skill-name">Google Earth Engine</div><div class="skill-desc">Cloud-based environmental analysis & satellite classification</div></div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-icon">🐍</div>
+      <div><div class="skill-name">Python</div><div class="skill-desc">Pandas, NumPy, Matplotlib, ML & ANN modeling</div></div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-icon">📊</div>
+      <div><div class="skill-name">R Language</div><div class="skill-desc">Statistical computing & data visualization</div></div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-icon">📈</div>
+      <div><div class="skill-name">SPSS</div><div class="skill-desc">Statistical analysis, data management & visualization</div></div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-icon">✏️</div>
+      <div><div class="skill-name">AutoCAD</div><div class="skill-desc">2D mapping, land use, infrastructure layout</div></div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-icon">🏙️</div>
+      <div><div class="skill-name">SketchUp & Enscape</div><div class="skill-desc">3D modeling, site planning & rendering</div></div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-icon">🎨</div>
+      <div><div class="skill-name">Adobe Illustrator</div><div class="skill-desc">Graphic design, map layout, poster design</div></div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-icon">💼</div>
+      <div><div class="skill-name">Microsoft Office Suite</div><div class="skill-desc">Word, Excel (pivot tables), PowerPoint</div></div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-icon">🔬</div>
+      <div><div class="skill-name">Research Tools</div><div class="skill-desc">PRA, RRA, MCDM, Google Forms</div></div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-icon">💻</div>
+      <div><div class="skill-name">C Programming</div><div class="skill-desc">Algorithms & data structure fundamentals</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section id="publications">
+  <p class="section-label">Research Output</p>
+  <h2 class="section-title">Publications</h2>
+  <div class="pub-list">
+
+    <div class="pub-card">
+      <div class="pub-year">Apr 2026</div>
+      <div>
+        <div class="pub-title">Evaluating Walkability through Pedestrian Facilities and Perceived Level of Service (PLOS) in Rajshahi Metropolitan Area, Bangladesh <span class="pub-badge badge-submitted">Submitted</span></div>
+        <div class="pub-venue">International Conference on Emerging Frontiers in Advanced Sciences and Technologies</div>
+      </div>
+    </div>
+
+    <div class="pub-card">
+      <div class="pub-year">May 2026</div>
+      <div>
+        <div class="pub-title">Exploring the Various Determinants Affecting Rural Water Consumption Using Statistical Analysis and Regression Model <span class="pub-badge badge-accepted">Abstract Accepted</span></div>
+        <div class="pub-venue">International Symposium on Energy & Environment (ISEE 2026)</div>
+      </div>
+    </div>
+
+    <div class="pub-card">
+      <div class="pub-year">May 2026</div>
+      <div>
+        <div class="pub-title">Assessing Heatwave of 64 Districts in Bangladesh <span class="pub-badge badge-accepted">Abstract Accepted</span></div>
+        <div class="pub-venue">International Symposium on Energy & Environment (ISEE 2026)</div>
+      </div>
+    </div>
+
+    <div class="pub-card">
+      <div class="pub-year">Jan 2025</div>
+      <div>
+        <div class="pub-title">Exploring the Constraints of Jute Cultivation and Analysis of Market Value: A Case Study in Bhugroil, Paba Upazila, Rajshahi <span class="pub-badge badge-published">Published</span></div>
+        <div class="pub-venue">Journal of Sustainable Agriculture</div>
+        <a href="https://doi.org/10.25081/jsa.2025.v9.9504" class="pub-doi" target="_blank">DOI: 10.25081/jsa.2025.v9.9504</a>
+      </div>
+    </div>
+
+    <div class="pub-card">
+      <div class="pub-year">Jan 2025</div>
+      <div>
+        <div class="pub-title">App-Based Food Delivery Services in Rajshahi City: Insights of Food Delivery Riders & Local Consumers <span class="pub-badge badge-published">Published</span></div>
+        <a href="https://doi.org/10.13140/RG.2.2.14780.14722" class="pub-doi" target="_blank">DOI: 10.13140/RG.2.2.14780.14722</a>
+      </div>
+    </div>
+
+    <div class="pub-card">
+      <div class="pub-year">Jun 2024</div>
+      <div>
+        <div class="pub-title">Visual Representation of Illegal Infrastructure Development on Sidewalks in Rajshahi City <span class="pub-badge badge-published">Published</span></div>
+        <a href="https://doi.org/10.13140/RG.2.2.21518.37441" class="pub-doi" target="_blank">DOI: 10.13140/RG.2.2.21518.37441</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- AWARDS -->
+<section id="awards">
+  <p class="section-label">Recognition</p>
+  <h2 class="section-title">Honors & Awards</h2>
+  <div class="awards-grid">
+    <div class="award-card">
+      <div class="award-icon">🏆</div>
+      <div>
+        <div class="award-name">Technical Scholarship</div>
+        <div class="award-org">Rajshahi University of Engineering & Technology</div>
+        <div class="award-year">2022, 2023, 2024</div>
+      </div>
+    </div>
+    <div class="award-card">
+      <div class="award-icon">🎓</div>
+      <div>
+        <div class="award-name">Dutch-Bangla Bank Scholarship</div>
+        <div class="award-org">Dutch-Bangla Bank Ltd, Dhaka</div>
+        <div class="award-year">Jan 2018 – Present</div>
+      </div>
+    </div>
+    <div class="award-card">
+      <div class="award-icon">🥇</div>
+      <div>
+        <div class="award-name">SSC Board Scholarship (General)</div>
+        <div class="award-org">Ministry of Education, Bangladesh</div>
+        <div class="award-year">2017 – 2019</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="section-label">Get in Touch</p>
+  <h2 class="section-title">Contact & References</h2>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <p>I'm open to research collaborations, academic opportunities, and urban planning projects. Feel free to reach out!</p>
+      <div class="contact-links">
+        <a href="mailto:sakibrana6510@gmail.com" class="contact-link">
+          <div class="contact-link-icon">✉</div>
+          sakibrana6510@gmail.com
+        </a>
+        <a href="tel:+8801724486510" class="contact-link">
+          <div class="contact-link-icon">📞</div>
+          +880 1724 486 510
+        </a>
+        <a href="https://wa.me/8801724486510" class="contact-link" target="_blank">
+          <div class="contact-link-icon">💬</div>
+          WhatsApp: +880 1724 486 510
+        </a>
+        <a href="#" class="contact-link">
+          <div class="contact-link-icon">🔬</div>
+          ResearchGate: Sakib Rana
+        </a>
+        <a href="#" class="contact-link">
+          <div class="contact-link-icon">💼</div>
+          LinkedIn: MD SAKIB RANA
+        </a>
+        <a class="contact-link" style="cursor:default;">
+          <div class="contact-link-icon">📍</div>
+          Kusumba, Manda, Naogaon, Bangladesh
+        </a>
+      </div>
+    </div>
+    <div>
+      <p style="color:rgba(255,255,255,0.5); font-size:0.8rem; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:1rem;">References</p>
+      <div class="refs-grid">
+        <div class="ref-card">
+          <div class="ref-name">Dr. Md. Abdul Wakil</div>
+          <div class="ref-title">Professor, Dept. of URP, RUET<br/>PhD (PolyU), MSc (HKU), BURP (BUET)</div>
+          <div class="ref-contact">mawakil@urp.ruet.ac.bd · +8801716729485</div>
+        </div>
+        <div class="ref-card">
+          <div class="ref-name">Muhammad Waresul Hassan Nipun</div>
+          <div class="ref-title">Assistant Professor, Dept. of URP, RUET<br/>MURP (JU), BURP (JU)</div>
+          <div class="ref-contact">waresul.urpju@gmail.com · +8801673395505</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Md Sakib Rana · Urban Planner · Built with ♥ | sakibrana6510@gmail.com
+</footer>
+
+</body>
+</html>
